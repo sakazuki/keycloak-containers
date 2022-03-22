@@ -8,7 +8,7 @@
 
   jobs:
     publish:
-      if: github.repository == 'keycloak/keycloak-containers'
+      if: github.repository == 'sakazuki/keycloak-containers'
       runs-on: ubuntu-latest
       strategy:
         matrix:
@@ -37,12 +37,12 @@
             type=raw,value={{tag}}-legacy
             type=raw,value=legacy
 
-      - name: Login to Quay
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
         uses: docker/login-action@v1
         with:
-          registry: quay.io
-          username: ${{ secrets.QUAY_USERNAME }}
-          password: ${{ secrets.QUAY_TOKEN }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
         uses: docker/build-push-action@v2
