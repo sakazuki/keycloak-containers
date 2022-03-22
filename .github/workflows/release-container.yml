@@ -32,7 +32,7 @@
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: quay.io/keycloak/${{ matrix.image }}
+          images: sakazuki/${{ matrix.image }}
           tags: |
             type=raw,value={{tag}}-legacy
             type=raw,value=legacy
