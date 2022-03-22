@@ -1,6 +1,11 @@
   name: Release Keycloak legacy containers
   on:
     workflow_dispatch:
+      inputs:
+        tag:
+          description: '<tag>-legacy'
+          required: true
+          default: 'latest'
     push:
       tags:
         - '[0-9]+.[0-9]+.[0-9]+'
